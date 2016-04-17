@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Meh.Models;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Data.Entity;
 
-namespace Meh.Models
+namespace Meh.Repository
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
@@ -16,5 +13,6 @@ namespace Meh.Models
             // For example, you can rename the ASP.NET Identity table names and more.
             // Add your customizations after calling base.OnModelCreating(builder);
         }
+        public DbSet<Article> Article { get; set; }
     }
 }

@@ -10,7 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Meh.Models;
-using Meh.Services;
+using Meh.Repository;
 
 namespace Meh
 {
@@ -57,8 +57,8 @@ namespace Meh
             services.AddMvc();
 
             // Add application services.
-            services.AddTransient<IEmailSender, AuthMessageSender>();
-            services.AddTransient<ISmsSender, AuthMessageSender>();
+            //services.AddTransient<IEmailSender, AuthMessageSender>();
+            //services.AddTransient<ISmsSender, AuthMessageSender>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -67,7 +67,7 @@ namespace Meh
             app.UseIISPlatformHandler(options => options.AuthenticationDescriptions.Clear());
             app.UseDefaultFiles();
             app.UseStaticFiles();
-            
+            DbDefaultData.Initialize(app.ApplicationServices);
 
             //loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             //loggerFactory.AddDebug();
@@ -76,7 +76,7 @@ namespace Meh
 
             //if (env.IsDevelopment())
             //{
-            //    app.UseBrowserLink();
+                //app.UseBrowserLink();
             //    app.UseDeveloperExceptionPage();
             //    app.UseDatabaseErrorPage();
             //}
@@ -107,12 +107,12 @@ namespace Meh
 
             //// To configure external authentication please see http://go.microsoft.com/fwlink/?LinkID=532715
 
-            //app.UseMvc(routes =>
-            //{
-            //    routes.MapRoute(
-            //        name: "default",
-            //        template: "{controller=Home}/{action=Index}/{id?}");
-            //});
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute(
+                    name: "default",
+                    template: "{controller=Home}/{action=Index}/{id?}");
+            });
         }
 
         // Entry point for the application.
