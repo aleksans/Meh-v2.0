@@ -64,50 +64,55 @@ namespace Meh
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
-            loggerFactory.AddConsole(Configuration.GetSection("Logging"));
-            loggerFactory.AddDebug();
-
-            app.UseApplicationInsightsRequestTelemetry();
-
-            if (env.IsDevelopment())
-            {
-                app.UseBrowserLink();
-                app.UseDeveloperExceptionPage();
-                app.UseDatabaseErrorPage();
-            }
-            else
-            {
-                app.UseExceptionHandler("/Home/Error");
-
-                // For more details on creating database during deployment see http://go.microsoft.com/fwlink/?LinkID=615859
-                try
-                {
-                    using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>()
-                        .CreateScope())
-                    {
-                        serviceScope.ServiceProvider.GetService<ApplicationDbContext>()
-                             .Database.Migrate();
-                    }
-                }
-                catch { }
-            }
-
             app.UseIISPlatformHandler(options => options.AuthenticationDescriptions.Clear());
-
-            app.UseApplicationInsightsExceptionTelemetry();
-
+            app.UseDefaultFiles();
             app.UseStaticFiles();
+            
 
-            app.UseIdentity();
+            //loggerFactory.AddConsole(Configuration.GetSection("Logging"));
+            //loggerFactory.AddDebug();
 
-            // To configure external authentication please see http://go.microsoft.com/fwlink/?LinkID=532715
+            //app.UseApplicationInsightsRequestTelemetry();
 
-            app.UseMvc(routes =>
-            {
-                routes.MapRoute(
-                    name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
-            });
+            //if (env.IsDevelopment())
+            //{
+            //    app.UseBrowserLink();
+            //    app.UseDeveloperExceptionPage();
+            //    app.UseDatabaseErrorPage();
+            //}
+            //else
+            //{
+            //    app.UseExceptionHandler("/Home/Error");
+
+            //    // For more details on creating database during deployment see http://go.microsoft.com/fwlink/?LinkID=615859
+            //    try
+            //    {
+            //        using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>()
+            //            .CreateScope())
+            //        {
+            //            serviceScope.ServiceProvider.GetService<ApplicationDbContext>()
+            //                 .Database.Migrate();
+            //        }
+            //    }
+            //    catch { }
+            //}
+
+            //app.UseIISPlatformHandler(options => options.AuthenticationDescriptions.Clear());
+
+            //app.UseApplicationInsightsExceptionTelemetry();
+
+            //app.UseStaticFiles();
+
+            //app.UseIdentity();
+
+            //// To configure external authentication please see http://go.microsoft.com/fwlink/?LinkID=532715
+
+            //app.UseMvc(routes =>
+            //{
+            //    routes.MapRoute(
+            //        name: "default",
+            //        template: "{controller=Home}/{action=Index}/{id?}");
+            //});
         }
 
         // Entry point for the application.
