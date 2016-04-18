@@ -6,6 +6,6 @@
 /// <reference path="lib/bootstrap/dist/js/bootstrap.js" />
 /// <reference path="lib/jquery/dist/jquery.js" />
 /// <reference path="lib/lodash/lodash.js" />
+/// <reference path="scripts/app.js" />
 /// <reference path="scripts/controllers/articlecontroller.js" />
 /// <reference path="scripts/factories/articlesresource.js" />
-/// <reference path="scripts/site.js" />

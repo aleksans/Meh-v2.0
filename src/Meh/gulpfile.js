@@ -1,7 +1,8 @@
-﻿/// <binding Clean='clean' />
+/// <binding BeforeBuild='build' Clean='clean' ProjectOpened='build' />
 "use strict";
 
 var gulp = require("gulp"),
+    inject = require("gulp-inject"),
     rimraf = require("rimraf"),
     concat = require("gulp-concat"),
     cssmin = require("gulp-cssmin"),
@@ -11,8 +12,9 @@ var paths = {
     webroot: "./wwwroot/"
 };
 
-paths.js = paths.webroot + "js/**/*.js";
-paths.minJs = paths.webroot + "js/**/*.min.js";
+paths.jsDep = paths.webroot + "lib/**/*.js";
+paths.minJsDep = paths.webroot + "lib/**/*.min.js";
+paths.js = paths.webroot + "scripts/**/*.js";
 paths.css = paths.webroot + "css/**/*.css";
 paths.minCss = paths.webroot + "css/**/*.min.css";
 paths.concatJsDest = paths.webroot + "js/site.min.js";
@@ -40,6 +42,19 @@ gulp.task("min:css", function () {
         .pipe(concat(paths.concatCssDest))
         .pipe(cssmin())
         .pipe(gulp.dest("."));
+});
+
+gulp.task("build",
+    function() {
+        var target = gulp.src('./wwwroot/index.html');
+        var sources = gulp.src([paths.minJsDep, paths.js, paths.css], { read: false });
+
+        return target.pipe(inject(sources, { ignorePath: 'wwwroot/', addRootSlash: false }))
+          .pipe(gulp.dest('./wwwroot'));
+    });
+
+gulp.task('watch', function () {
+    return gulp.watch([paths.minJsDep, paths.js, paths.css], ['build']);
 });
 
 gulp.task("min", ["min:js", "min:css"]);
