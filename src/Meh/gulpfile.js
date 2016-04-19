@@ -54,7 +54,7 @@ gulp.task("build",
     });
 
 gulp.task('watch', function () {
-    return gulp.watch([paths.minJsDep, paths.js, paths.css], ['build']);
+    return gulp.watch(["lib/**/*.min.js", "scripts/**/*.js", "css/**/*.css"], {cwd: paths.webroot},['build']);
 });
 
 gulp.task("min", ["min:js", "min:css"]);
