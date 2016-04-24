@@ -1,15 +1,25 @@
-﻿<div>
-    <input type="text" ng-model="testValue" />
-    <label>{{testValue}}</label>
-    <br /><br />
-    <div ng-repeat="article in ::articles">
-        <br />
-        <label>Name</label>
-        <br/>
-        <input type="text" ng-model="article.Name"/>
-        <br/>
-        <label>Story</label>
-        <br/>
-        <input type="text" ng-model="article.Story"/>
+﻿<div class="content">
+    <div class="general-info">
+        <p>Test</p>
+    </div>
+    <div class="articles">
+
+        <div>
+            <input type="text" ng-model="testValue" />
+            <label>{{testValue}}</label>
+            <br /><br />
+            <div ng-repeat="article in ::articles">
+                <br />
+                <label>Name</label>
+                <br />
+                <input type="text" ng-model="article.Name" />
+                <br />
+                <label>Story</label>
+                <br />
+                <input type="text" ng-model="article.Story" />
+            </div>
+        </div>
     </div>
 </div>
+
+
