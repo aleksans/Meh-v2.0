@@ -18,3 +18,34 @@ body, html {
   width: 80%;
   float: right;
   height: 100%; }
+
+.calculator {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+  width: 315px;
+  height: 300px;
+  border: 1px solid grey;
+  border-radius: 5px;
+  padding: 15px; }
+  .calculator .calculator-input {
+    width: 100%;
+    height: 25px;
+    margin-bottom: 10px; }
+  .calculator .calculator-numbers {
+    width: auto;
+    display: table-row;
+    float: left; }
+    .calculator .calculator-numbers button {
+      display: table-row; }
+    .calculator .calculator-numbers .button-row {
+      width: auto;
+      display: table-row; }
+  .calculator .calculator-actions {
+    float: left; }
+    .calculator .calculator-actions button {
+      display: block; }
+  .calculator button {
+    width: 50px;
+    height: 50px;
+    margin: 3px; }

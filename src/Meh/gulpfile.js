@@ -15,6 +15,7 @@ var paths = {
 
 paths.jsDep = paths.webroot + "lib/**/*.js";
 paths.minJsDep = paths.webroot + "lib/**/*.min.js";
+paths.minCssDep = paths.webroot + "lib/**/*.min.css";
 paths.js = paths.webroot + "scripts/**/*.js";
 paths.css = paths.webroot + "css/**/*.css";
 paths.scss = paths.webroot + "css/**/*scss";
@@ -50,7 +51,7 @@ gulp.task("build", ["build-sass", "build-html"]);
 
 gulp.task("build-html", function() {
     var target = gulp.src('./wwwroot/index.html');
-    var sources = gulp.src([paths.minJsDep, paths.js, paths.css], { read: false });
+    var sources = gulp.src([paths.minJsDep, paths.js, paths.css, paths.minCssDep], { read: false });
 
     return target.pipe(inject(sources, { ignorePath: 'wwwroot/', addRootSlash: false }))
       .pipe(gulp.dest('./wwwroot'));
@@ -64,7 +65,7 @@ gulp.task("build-sass",
     });
 
 gulp.task('watch', function () {
-    return gulp.watch(["scripts/**/*.js", "css/**/*.scss", "views/**/*.html"], { cwd: paths.webroot }, ['build']);
+    return gulp.watch(["scripts/**/*.js", "css/**/*.scss", "lib/**/*.min.css", "views/**/*.html"], { cwd: paths.webroot }, ['build']);
 });
 
 gulp.task("min", ["min:js", "min:css"]);

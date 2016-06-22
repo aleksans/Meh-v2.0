@@ -8,4 +8,6 @@
 /// <reference path="lib/lodash/lodash.js" />
 /// <reference path="scripts/app.js" />
 /// <reference path="scripts/controllers/articlecontroller.js" />
+/// <reference path="scripts/controllers/calculatorController.js" />
 /// <reference path="scripts/factories/articlesresource.js" />
+/// <reference path="scripts/factories/javascript.js" />
