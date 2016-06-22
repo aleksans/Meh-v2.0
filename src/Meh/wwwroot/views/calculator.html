@@ -1,0 +1,35 @@
+﻿<div class="calculator">
+    <input readonly="readonly" 
+           maxlength="25" 
+           ng-model="displayResult" 
+           class="calculator-input form-control" />
+    <div>
+        <div class="calculator-numbers">
+            <div class="button-row" ng-repeat="row in [[7, 8, 9], [4, 8, 6], [1, 2, 3], [0]]">
+                <button ng-repeat="column in row"
+                        class="btn btn-default"
+                        ng-click="addNumber(column)">
+                    {{column}}
+                </button>
+            </div>
+        </div>
+        <div class="calculator-actions">
+            <button class="btn btn-primary" ng-click="setOperation('+')">+</button>
+            <button class="btn btn-primary" ng-click="setOperation('-')">-</button>
+            <button class="btn btn-primary" ng-click="setOperation('*')">*</button>
+            <button class="btn btn-primary" ng-click="setOperation('/')">/</button>
+        </div>
+        <div class="calculator-actions">
+            <button class="btn btn-default" 
+                    ng-click="isFEActive = true"
+                    ng-class="{'active' : isFEActive}">FE</button>
+            <button class="btn btn-default" 
+                    ng-click="isFEActive = false"
+                    ng-class="{'active' : !isFEActive}">BE</button>
+            <button class="btn btn-success" 
+                    ng-click="clear()">Clear</button>
+            <button class="btn btn-success" 
+                    ng-click="calculate()">=</button>
+        </div>
+    </div>
+</div>
